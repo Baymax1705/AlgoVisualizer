@@ -70,10 +70,17 @@ Explore search and pathfinding traversals on a 2D interactive grid.
 ## Screenshots
 
 <div align="center">
-  <img src="./screenshots/Screenshot%202024-11-28%20at%206.24.41%E2%80%AFAM.png" alt="CPU Scheduling" width="400px">
-  <img src="./screenshots/Screenshot%202024-11-28%20at%206.26.22%E2%80%AFAM.png" alt="Process Simulation" width="400px">
-  <br>
-  <img src="./screenshots/Screenshot%202024-11-28%20at%206.26.34%E2%80%AFAM.png" alt="Metrics Table" width="600px">
+  <h4>1. Home Selection Dashboard</h4>
+  <img src="./screenshots/home.png" alt="Home Dashboard" width="700px">
+  <br><br>
+  <h4>2. CPU Scheduling Visualizer</h4>
+  <img src="./screenshots/scheduling.png" alt="CPU Scheduling Visualizer" width="700px">
+  <br><br>
+  <h4>3. Array Sorting Visualizer</h4>
+  <img src="./screenshots/sorting.png" alt="Array Sorting Visualizer" width="700px">
+  <br><br>
+  <h4>4. Graph Pathfinding Grid</h4>
+  <img src="./screenshots/graph.png" alt="Graph Pathfinding Visualizer" width="700px">
 </div>
 
 ---
