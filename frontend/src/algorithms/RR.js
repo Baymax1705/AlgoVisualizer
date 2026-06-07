@@ -89,6 +89,9 @@ const RoundRobin = (processes, quantum) => {
       // Record the Gantt chart value for the completed process
       process.ganttValues.push([startTime, currentTime]);
 
+      // Reset currentIndex to prevent double-pushing on the next loop
+      currentIndex = -1;
+
       // Store completed process results
       result.push({
         id: process.id,

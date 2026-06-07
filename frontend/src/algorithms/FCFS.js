@@ -57,6 +57,9 @@ const FCFS = (processes) => {
     // Record the last Gantt segment for the completed process
     process.ganttValues.push([startTime, currentTime]);
 
+    // Reset currentIndex to prevent double-pushing on the next loop
+    currentIndex = -1;
+
     // Set the completion time and calculate turnaround and waiting times
     process.completion = currentTime;
     process.turnaround = process.completion - process.arrival;

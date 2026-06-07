@@ -58,8 +58,8 @@ function OutputTable({ output }) {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center", width: "100%" }}>
-        <h1 style={{ color: "#000000" }} className="output-table-title">
+      <div style={{ display: "flex", width: "100%" }}>
+        <h1 className="output-table-title">
           Live Output Table
         </h1>
       </div>
@@ -75,8 +75,8 @@ function TableHead({ headings }) {
   return (
     <thead>
       <tr>
-        {headings.map((heading) => (
-          <th>{heading}</th>
+        {headings.map((heading, index) => (
+          <th key={`th-${index}`}>{heading}</th>
         ))}
       </tr>
     </thead>

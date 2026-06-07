@@ -1,61 +1,44 @@
 @import "tailwindcss";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Wrapper to hold background */
+/* Full viewport background setup */
 body {
-  background-image: url("https://media.istockphoto.com/id/1396069049/vector/abstract-geometric-background-with-triangle-shape-pattern.jpg?s=612x612&w=0&k=20&c=8D-F3tXFiBumD_l236mwTeZHrqWy0HBNOrQn49LTWbY=");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: radial-gradient(circle at 50% 0%, #1a2333 0%, #080d16 100%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
   min-height: 100vh;
   width: 100%;
-  font-family: sans-serif;
 }
 
-/* Container for the buttons */
-.button-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 100px;
-  flex-wrap: wrap; /* allows wrapping on smaller screens */
-}
-
-/* Button style */
+/* Glass buttons used across scheduling forms */
 .home-btn {
   font-weight: 600;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 5px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   text-decoration: none;
   text-align: center;
+  backdrop-filter: blur(8px);
 }
 
 .home-btn:hover {
-  background-color: black;
-  color: white;
-  transform: scale(1.1);
+  background-color: #38bdf8;
+  color: #090d16;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
 }
 
 .home-btn:active {
-  transform: scale(1);
-  background-color: #111111;
+  transform: translateY(0);
 }
 
-/* Remove tsparticles if not used */
+/* Hide unused tsParticles canvas */
 #tsparticles {
   display: none;
 }

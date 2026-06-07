@@ -3,102 +3,172 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 40px 20px;
-  min-height: 100vh;
+  padding: 60px 20px;
+  min-height: calc(100vh - 70px);
   text-align: center;
-  background-image: url("https://drive.google.com/uc?export=view&id=1ffUkVRXzNXbvFuubN5eYLoICAYu0EayU");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 2.8rem;
   color: #ffffff;
   font-weight: 800;
-  margin-top: 40px;
-  margin-bottom: 30px;
+  margin-top: 10px;
+  margin-bottom: 40px;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   text-align: center;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.1);
-  background: linear-gradient(to right, #ffb700, #00ff2a);
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: popUp 0.6s ease-in-out;
+  filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.15));
+  animation: fadeIn 0.8s ease-out;
 }
 
 .card-grid,
 .dual-card-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 24px;
   justify-content: center;
+  max-width: 1200px;
+  width: 100%;
 }
 
+.dual-card-grid {
+  margin-bottom: 40px;
+}
+
+/* Glassmorphic Algorithm Selection Cards */
 .card {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: black;
-  border-radius: 12px;
-  padding: 25px;
-  width: 280px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  background: rgba(30, 41, 59, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #f8fafc;
+  border-radius: 16px;
+  padding: 30px;
+  width: 320px;
+  min-height: 180px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow effect outline on hover */
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .card:hover {
-  background-color: black;
-  color: white;
-  transform: scale(1.05);
+  transform: translateY(-8px);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 15px 35px rgba(56, 189, 248, 0.15);
+  background: rgba(30, 41, 59, 0.65);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card-title {
-  font-size: 1.3rem;
-  font-weight: bold;
+  font-size: 1.25rem;
+  font-weight: 700;
   margin-bottom: 12px;
+  color: #f8fafc;
+  background: linear-gradient(to right, #ffffff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.card:hover .card-title {
+  background: linear-gradient(to right, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .card-description {
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 0.92rem;
+  color: #94a3b8;
+  line-height: 1.6;
 }
 
-/* GitHub button */
+/* Custom bullet styling for sorting & graph lists on home */
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.card li {
+  font-size: 0.92rem;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card li::before {
+  content: "✦";
+  color: #38bdf8;
+  font-size: 0.8rem;
+}
+
+/* GitHub button adjustments */
 .github-btn {
   position: absolute;
   top: 20px;
   right: 20px;
   font-weight: 600;
-  background-color: white;
-  color: black;
-  border: none;
-  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
   padding: 10px 20px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
   text-decoration: none;
 }
 
 .github-btn:hover {
-  background-color: black;
-  color: white;
-  transform: scale(1.1);
+  background-color: #38bdf8;
+  color: #090d16;
+  border-color: #38bdf8;
+  transform: translateY(-2px);
 }
 
-.github-btn:active {
-  transform: scale(1);
-  background-color: #111;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    margin-top: 20px;
   }
 
   .card-grid,
@@ -108,15 +178,7 @@
   }
 
   .card {
-    width: 80vw;
-    padding: 20px;
-  }
-
-  .card-title {
-    font-size: 1.1rem;
-  }
-
-  .card-description {
-    font-size: 0.9rem;
+    width: 90vw;
+    min-height: auto;
   }
 }

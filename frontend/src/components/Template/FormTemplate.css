@@ -1,134 +1,183 @@
+.template-form-container {
+  max-width: 800px;
+  background-color: transparent;
+  text-align: left;
+  max-width: 850px;
+}
+
+.template-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.template-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.template-process-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Glass inputs */
+.template-input {
+  width: 100%;
+  max-width: 110px;
+  padding: 10px 14px;
+  background: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.template-input::placeholder {
+  color: #64748b;
+}
+
+.template-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.25);
+  background: rgba(15, 23, 42, 0.7);
+}
+
+/* Form Action Buttons */
+.template-add-btn {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 44px;
+}
+
+.template-add-btn:hover {
+  background-color: #10b981;
+  color: #090d16;
+  border-color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.template-remove-btn {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 44px;
+}
+
+.template-remove-btn:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.template-quantum {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #e2e8f0;
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+.template-quantum input {
+  max-width: 100px;
+}
+
+.template-submit-div-btn {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.template-submit-btn {
+  background-color: #38bdf8;
+  color: #090d16;
+  border: 1px solid #38bdf8;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 90px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+}
+
+.template-submit-btn:hover {
+  background-color: #7dd3fc;
+  border-color: #7dd3fc;
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.4);
+}
+
+.template-clear-btn {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  min-width: 90px;
+  transition: all 0.3s ease;
+}
+
+.template-clear-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+}
+
+@media (max-width: 768px) {
   .template-form-container {
-    max-width: 800px;
-    padding: 20px;
-    background-color: #ffffff;
-    text-align: center;
-    max-width: 850px;
+    min-height: auto;
   }
-  
-  .template-title {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #000000;
-  }
-  
-  .template-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
+
   .template-process-row {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
   }
-  
+
   .template-input {
-    width: 100%;
-    max-width: 80px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
+    max-width: 78px;
+    padding: 8px 10px;
+    font-size: 0.8rem;
   }
   
-  .template-input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-  }
-  
-  .template-add-btn{
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 50px;
-  }
-  
-  .template-remove-btn{
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    min-width: 50px;
+  .template-add-btn,
+  .template-remove-btn {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    min-width: 38px;
   }
 
-  .template-submit-div-btn {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .template-submit-btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 5px;
-    font-size: 1rem;
-    cursor: pointer;
+  .template-submit-btn, 
+  .template-clear-btn {
+    font-size: 0.85rem;
     min-width: 80px;
+    padding: 8px 16px;
   }
-
-  .template-clear-btn{
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    min-width: 80px;
-  }
-  
-  .template-add-btn:active,
-  .template-submit-btn:active {
-    background-color: #1e598c;
-  }
-  
-  @media (max-width: 768px) {
-
-    .template-form-container{
-    min-height: 300px;
-    }
-  
-    .template-title {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    
-    .template-form {
-      gap: 10px;
-    }
-
-    .template-input {
-      padding: 0 5px;
-      font-size: 0.7rem;
-    }
-    
-    .template-add-btn{
-      font-size: 0.8rem;
-    }
-    .template-remove-btn{
-      font-size: 0.8rem;
-    }
-  
-    .template-submit-btn, .template-clear-btn {
-      font-size: 0.8rem;
-      cursor: pointer;
-      min-width: 60px;
-      padding: 7px 0px;
-    }
-  }
-  
-    
+}

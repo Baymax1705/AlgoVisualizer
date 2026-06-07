@@ -1,19 +1,50 @@
-.metrics-div{
-    border: 2px solid black;
-    padding: 10px 15px;
-    min-width: 80%;
-    margin: 4% 5%;
-    background-color: aqua;
+.metric-header {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 20px !important;
+  background: linear-gradient(135deg, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+.metrics-div {
+  background-color: rgba(15, 23, 42, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-left: 4px solid #38bdf8; /* Cyan accent border */
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 12px 0;
+  color: #f8fafc;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metrics-div strong {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Custom coloring for different metrics */
+.metrics-div:nth-of-type(2) {
+  border-left-color: #818cf8; /* Indigo accent border */
+}
+
+.metrics-div:nth-of-type(3) {
+  border-left-color: #10b981; /* Emerald accent border */
+}
+
 @media (max-width: 768px) {
-    .metric-header{
-        margin: 0;
-    }
+  .metric-header {
+    margin: 10px 0 !important;
+    font-size: 1.2rem;
+  }
 
-    .metrics-div{
-        padding: 5px 10px;
-        font-size: 0.8rem;
-    }
-
-   
+  .metrics-div {
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    margin: 8px 0;
+  }
 }

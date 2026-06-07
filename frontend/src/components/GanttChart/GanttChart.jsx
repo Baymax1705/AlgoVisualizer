@@ -1,48 +1,43 @@
 import React from "react";
 
 const getRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+  // Generate highly saturated, modern colors
+  const hue = Math.floor(Math.random() * 360);
+  return `hsl(${hue}, 80%, 60%)`;
 };
 
 const GanttChart = ({ processes = [] }) => {
-  console.log("Processes received by GanttChart:", processes);
-
-  // Define colors for up to 10 processes
+  // Define premium colors for processes
   const colors = [
-    "#FF5733",
-    "#33FF57",
-    "#3357FF",
-    "#FFC300",
-    "#DA33FF",
-    "#33FFF5",
-    "#FF33A8",
-    "#A833FF",
-    "#33A8FF",
-    "#FF8C33",
+    "#3b82f6", // Blue
+    "#10b981", // Emerald
+    "#f59e0b", // Amber
+    "#ef4444", // Red
+    "#8b5cf6", // Purple
+    "#ec4899", // Pink
+    "#06b6d4", // Cyan
+    "#f97316", // Orange
+    "#14b8a6", // Teal
+    "#a855f7", // Light Purple
   ];
 
   // Create a color mapping based on process IDs
   const colorMap = {};
   processes.forEach((process) => {
-    const colorIndex = parseInt(process.id.replace("P", ""), 10) - 1; // Convert ID to number
+    const colorIndex = parseInt(process.id.replace(/\D/g, ""), 10) - 1; // Extract number
     if (colorIndex >= 0 && colorIndex < colors.length) {
       colorMap[process.id] = colors[colorIndex];
     } else {
-      colorMap[process.id] = getRandomColor(); // Dynamic color if out of bounds
+      colorMap[process.id] = getRandomColor();
     }
   });
 
-  // Flatten and map processes to segments with proper color assignment
+  // Flatten and map processes to segments
   const ganttSegments = processes.flatMap((process) =>
     process.ganttValues.map(([start, end]) => ({
       id: process.id,
-      start,
-      end,
+      start: parseInt(start, 10),
+      end: parseInt(end, 10),
       color: colorMap[process.id],
     }))
   );
@@ -50,71 +45,156 @@ const GanttChart = ({ processes = [] }) => {
   // Sort segments by start time
   ganttSegments.sort((a, b) => a.start - b.start);
 
-  // Determine the overall timeline
-  const maxTime =
-    ganttSegments.length > 0
-      ? Math.max(...ganttSegments.map((segment) => segment.end))
-      : 0;
-  const timeline = Array.from({ length: maxTime }, (_, i) => i);
+  // Build the timeline blocks, filling idle intervals
+  const blocks = [];
+  let lastTime = 0;
+
+  ganttSegments.forEach((segment) => {
+    // Fill idle gap
+    if (segment.start > lastTime) {
+      blocks.push({
+        id: "Idle",
+        start: lastTime,
+        end: segment.start,
+        color: "rgba(148, 163, 184, 0.15)", // Subtle slate gray for idle
+        isIdle: true,
+      });
+    }
+
+    // Add process execution block (skip redundant overlaps)
+    if (segment.start >= lastTime && segment.end > segment.start) {
+      blocks.push({
+        id: segment.id,
+        start: segment.start,
+        end: segment.end,
+        color: segment.color,
+        isIdle: false,
+      });
+      lastTime = segment.end;
+    }
+  });
+
+  const totalDuration = lastTime;
+
+  if (blocks.length === 0) {
+    return (
+      <div style={{ color: "#94a3b8", textAlign: "center", padding: "20px" }}>
+        No scheduling data to render.
+      </div>
+    );
+  }
 
   return (
-    <div style={{ width: "100%", overflowX: "auto" }}>
+    <div style={{ width: "100%", padding: "10px 0" }}>
+      {/* Gantt Timeline Blocks */}
       <div
         style={{
           display: "flex",
           flexDirection: "row",
-          alignItems: "center",
           width: "100%",
+          borderRadius: "8px",
+          overflow: "hidden",
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          backgroundColor: "rgba(15, 23, 42, 0.3)",
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.3)",
+          backdropFilter: "blur(10px)",
         }}
       >
-        {timeline.map((time) => {
-          const activeSegment = ganttSegments.find(
-            (segment) => time >= segment.start && time < segment.end
-          );
+        {blocks.map((block, index) => {
+          const duration = block.end - block.start;
+          // Percentage width representation
+          const percentWidth = totalDuration > 0 ? (duration / totalDuration) * 100 : 0;
 
           return (
             <div
-              key={`time-slot-${time}`}
+              key={`gantt-block-${index}`}
               style={{
-                backgroundColor: activeSegment
-                  ? activeSegment.color
-                  : "#E0E0E0", // Idle color
-                flex: "1 1 auto",
-                minWidth: "30px", // Minimum size for each time slot
-                height: "100px",
-                border: "1px solid #000",
+                width: `${percentWidth}%`,
+                backgroundColor: block.color,
+                minWidth: "60px",
+                height: "65px",
                 display: "flex",
+                flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                color: "#000",
-                fontSize: "12px",
+                color: block.isIdle ? "#94a3b8" : "#ffffff",
+                fontSize: "14px",
+                fontWeight: "600",
+                borderRight: index < blocks.length - 1 ? "1px solid rgba(0, 0, 0, 0.2)" : "none",
+                transition: "all 0.3s ease",
+                position: "relative",
               }}
+              title={`${block.id} (${block.start}s - ${block.end}s)`}
             >
-              {activeSegment ? `P${activeSegment.id.replace("P", "")}` : ""}
+              <span>{block.id === "Idle" ? "Idle" : block.id}</span>
+              <span
+                style={{
+                  fontSize: "10px",
+                  opacity: 0.8,
+                  fontWeight: "normal",
+                  marginTop: "2px",
+                }}
+              >
+                {duration}s
+              </span>
             </div>
           );
         })}
       </div>
+
+      {/* Gantt Timeline Labels / Grid ruler */}
       <div
         style={{
-          marginTop: "10px",
           display: "flex",
           width: "100%",
+          position: "relative",
+          marginTop: "6px",
+          height: "20px",
         }}
       >
-        {timeline.map((time) => (
-          <div
-            key={`time-label-${time}`}
-            style={{
-              flex: "1 1 auto",
-              minWidth: "30px",
-              // textAlign: "center",
-              fontSize: "12px",
-            }}
-          >
-            {time}
-          </div>
-        ))}
+        {blocks.map((block, index) => {
+          const duration = block.end - block.start;
+          const percentWidth = totalDuration > 0 ? (duration / totalDuration) * 100 : 0;
+
+          return (
+            <div
+              key={`gantt-label-${index}`}
+              style={{
+                width: `${percentWidth}%`,
+                position: "relative",
+                display: "flex",
+                justifyContent: "space-between",
+                fontSize: "11px",
+                color: "#94a3b8",
+                fontWeight: "500",
+              }}
+            >
+              {/* Left boundary tick marker */}
+              <span
+                style={{
+                  position: "absolute",
+                  left: "0",
+                  transform: "translateX(-50%)",
+                }}
+              >
+                {block.start}
+              </span>
+
+              {/* Only show the last end-tick marker on the very last block to avoid overlap */}
+              {index === blocks.length - 1 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    right: "0",
+                    transform: "translateX(50%)",
+                  }}
+                >
+                  {block.end}
+                </span>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
