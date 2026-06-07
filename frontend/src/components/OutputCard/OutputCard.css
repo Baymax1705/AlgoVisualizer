@@ -1,0 +1,168 @@
+/* Ensure the container stretches to the entire viewport */
+
+.card-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Align to the top */
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 2% 0;
+}
+
+/* Dashboard container with flexible layout */
+.dashboard {
+  display: flex;
+  flex-direction: column; 
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  box-sizing: border-box;
+  gap: 15px;
+}
+
+.upper-section{
+  display: flex;
+  gap: 15px;
+}
+
+.lower-section{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.input-section, .progress-section{
+  width: 50%;
+  border: 1px solid black;
+}
+
+.progress-section{
+  padding: 2% 5%;
+}
+
+.output-table-section, .gantt-section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 30vh;
+  padding: 2%;
+  border: 1px solid black
+}
+
+.output-table-secheduling-metrics{
+  display: flex;
+  gap: 15px;
+}
+
+.scheduling-metrics-section{
+  border: 1px solid black;
+  min-width: 34%;
+}
+
+/* Title of output section */
+h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.output-table {
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.output-table th,
+.output-table td {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 10px 0px;
+}
+
+.output-table th {
+  padding: 10px;
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.output-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.output-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .card-container {
+    margin: 20% 0;
+  }
+  
+  h1 {
+    font-size: 1.2rem;
+  }
+
+  .upper-section{
+    display: flex;
+    flex-direction: column;
+  }
+  .progress-section,.input-section{
+    width: 100%;
+  }
+
+  .dashboard {
+    flex-direction: column; /* Stack input and output sections vertically */
+    padding: 10px;
+  }
+
+  .output-table-secheduling-metrics{
+    flex-direction: column;
+  }
+  
+  .output-table th,
+  .output-table td {
+    font-size: 0.7rem;
+    width: 20px;
+    padding: 9px 0;
+
+  }
+
+
+  .output-table-title{
+    font-size: 1.2rem;
+  }
+  
+  .output-table-secheduling-metrics{
+    flex-direction: column;
+  }
+  
+  .scheduling-metrics-section{
+    width: 100%;
+  }
+}
+
+@media (max-width: 368px) {
+
+  .input-section,
+  .output-section {
+    width: 100%;
+    border-right: none; /* Remove border on mobile */
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .output-table {
+    padding: 5px;
+    font-size: 0.5rem;
+  }
+
+}

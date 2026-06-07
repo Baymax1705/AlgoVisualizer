@@ -1,0 +1,122 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  text-align: center;
+  background-image: url("https://drive.google.com/uc?export=view&id=1ffUkVRXzNXbvFuubN5eYLoICAYu0EayU");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.title {
+  font-size: 3.5rem;
+  color: #ffffff;
+  font-weight: 800;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4), 0 0 10px rgba(255, 255, 255, 0.1);
+  background: linear-gradient(to right, #ffb700, #00ff2a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: popUp 0.6s ease-in-out;
+}
+
+.card-grid,
+.dual-card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: black;
+  border-radius: 12px;
+  padding: 25px;
+  width: 280px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.card:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.05);
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* GitHub button */
+.github-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-weight: 600;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+}
+
+.github-btn:hover {
+  background-color: black;
+  color: white;
+  transform: scale(1.1);
+}
+
+.github-btn:active {
+  transform: scale(1);
+  background-color: #111;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .card-grid,
+  .dual-card-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 80vw;
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  .card-description {
+    font-size: 0.9rem;
+  }
+}
